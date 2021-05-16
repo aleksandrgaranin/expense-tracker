@@ -11,7 +11,13 @@ import {
 } from "@material-ui/core";
 
 import { ExpenseTrackerContext } from "../../../context/context";
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from "uuid";
+
+import {
+  incomeCategories,
+  expenseCategories,
+} from "../../../constants/categories";
+
 import useStyles from "./styles";
 
 const initialState = {
@@ -26,12 +32,15 @@ const Form = () => {
   const { addTransaction } = useContext(ExpenseTrackerContext);
   const [formData, setFormData] = useState(initialState);
 
-  const createTransaction =() => {    
-    const transaction = { ...formData, amount: Number(formData.amount), id: uuidv4() }
+  const createTransaction = () => {
+    const transaction = {
+      ...formData,
+      amount: Number(formData.amount),
+      id: uuidv4(),
+    };
     addTransaction(transaction);
-    setFormData(initialState)
-  }
-
+    setFormData(initialState);
+  };
 
   // console.log(formData);
   return (
@@ -62,8 +71,15 @@ const Form = () => {
               setFormData({ ...formData, category: e.target.value })
             }
           >
-            <MenuItem value="business">business</MenuItem>
-            <MenuItem value="salary">salary</MenuItem>
+            {formData.type === "Income"
+              ? incomeCategories.map((c) => (
+                  <MenuItem key={c.type} value={c.type}>{c.type}</MenuItem>
+                ))
+              : expenseCategories.map((c) => (
+                  <MenuItem key={c.type} value={c.type}>{c.type}</MenuItem>
+                ))}
+            {/* <MenuItem value="business">business</MenuItem>
+            <MenuItem value="salary">salary</MenuItem> */}
           </Select>
         </FormControl>
       </Grid>
