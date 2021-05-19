@@ -20,6 +20,7 @@ import {
 } from "../../../constants/categories";
 
 import formatDate from "../../../utils/formatDate";
+import CustomizedSnackbar from "../../Snackbar/CustomizedSnackbar";
 
 import useStyles from "./styles";
 
@@ -34,6 +35,7 @@ const Form = () => {
   const classes = useStyles();
   const { addTransaction } = useContext(ExpenseTrackerContext);
   const [formData, setFormData] = useState(initialState);
+  const [open, setOpen] = useState(false);
   const { segment } = useSpeechContext();
 
   const createTransaction = () => {
@@ -46,6 +48,7 @@ const Form = () => {
     };
     addTransaction(transaction);
     setFormData(initialState);
+    setOpen(true)
   };
 
   useEffect(() => {
@@ -70,7 +73,7 @@ const Form = () => {
         const category = `${e.value.charAt(0)}${e.value
           .slice(1)
           .toLowerCase()}`;
-          // console.log(category)
+        // console.log(category)
         switch (e.type) {
           case "amount":
             setFormData({ ...formData, amount: e.value });
@@ -107,6 +110,7 @@ const Form = () => {
   // console.log(formData);
   return (
     <Grid container spacing={2}>
+      <CustomizedSnackbar open={open} setOpen={setOpen}></CustomizedSnackbar>
       <Grid item xs={12}>
         <Typography align="center" variant="subtitle2">
           {segment && <>{segment.words.map((w) => w.value).join(" ")}</>}
