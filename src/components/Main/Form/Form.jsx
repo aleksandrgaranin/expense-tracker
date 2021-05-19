@@ -70,7 +70,7 @@ const Form = () => {
         const category = `${e.value.charAt(0)}${e.value
           .slice(1)
           .toLowerCase()}`;
-          console.log(category)
+          // console.log(category)
         switch (e.type) {
           case "amount":
             setFormData({ ...formData, amount: e.value });
