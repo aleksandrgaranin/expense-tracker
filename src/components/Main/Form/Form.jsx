@@ -48,7 +48,7 @@ const Form = () => {
     };
     addTransaction(transaction);
     setFormData(initialState);
-    setOpen(true)
+    setOpen(true);
   };
 
   useEffect(() => {
@@ -70,15 +70,15 @@ const Form = () => {
       }
 
       segment.entities.forEach((e) => {
-        const category = `${e.value.charAt(0)}${e.value
-          .slice(1)
-          .toLowerCase()}`;
         // console.log(category)
         switch (e.type) {
           case "amount":
             setFormData({ ...formData, amount: e.value });
             break;
           case "category":
+            const category = `${e.value.charAt(0)}${e.value
+              .slice(1)
+              .toLowerCase()}`;
             if (incomeCategories.map((iC) => iC.type).includes(category)) {
               setFormData({ ...formData, type: "Income", category: category });
             } else if (
@@ -105,7 +105,7 @@ const Form = () => {
         createTransaction();
       }
     }
-  }, [segment]);
+  }, [segment,]);
 
   // console.log(formData);
   return (

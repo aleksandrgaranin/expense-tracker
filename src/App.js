@@ -13,10 +13,10 @@ import useStyles from "./styles";
 const App = () => {
   const classes = useStyles();
   const { speechState } = useSpeechContext();
-  const main = useRef(null)
+  const main = useRef(null);
 
   const executeScroll = () => {
-    main.current.scrollIntoView({behavior: "smooth"});
+    main.current.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -33,18 +33,45 @@ const App = () => {
         spacing={0}
         alignItems="center"
         justify="center"
-        style={{ height: "100vh" }}
+        style={{ height: "100vh", textAlign: "center" }}
       >
-        <Grid item xs={12} sm={4} className={classes.mobile}>
+        <Grid
+          style={{ width:'auto', maxWidth: "600px" }}
+          item
+          xs={12}
+          sm={4}
+          className={classes.mobile}
+        >
           <Details title="Income" />
         </Grid>
-        <Grid ref={main} item xs={12} sm={3} className={classes.main}>
-          <Main  />
+        <Grid
+          justify="center"
+          item
+          xs={12}
+          sm={3}
+          ms={4}
+          ref={main}
+          className={classes.main}
+        >
+          <Main />
         </Grid>
-        <Grid item xs={12} sm={4} className={classes.desktop}>
+        <Grid
+          style={{ width:'auto', maxWidth: "600px" }}
+          item
+          xs={12}
+          sm={4}
+          className={classes.desktop}
+        >
           <Details title="Income" />
         </Grid>
-        <Grid item xs={12} sm={4} className={classes.last}>
+        <Grid
+          style={{ width:'auto', maxWidth: "600px" }}
+          justify="center"
+          item
+          xs={12}
+          sm={4}
+          className={classes.last}
+        >
           <Details title="Expense" />
         </Grid>
       </Grid>
