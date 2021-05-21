@@ -39,8 +39,15 @@ const Form = () => {
   const { segment } = useSpeechContext();
 
   const createTransaction = () => {
-    if (Number.isNaN(Number(formData.amount)) || !formData.date.includes("-"))
+    if (
+      Number.isNaN(Number(formData.amount)) ||
+      !formData.date.includes("-") ||
+      formData.category === "" ||
+      formData.category === "" ||
+      formData.type === ""
+    )
       return;
+
     const transaction = {
       ...formData,
       amount: Number(formData.amount),
@@ -105,7 +112,7 @@ const Form = () => {
         createTransaction();
       }
     }
-  }, [segment,]);
+  }, [segment]);
 
   // console.log(formData);
   return (
